@@ -159,54 +159,65 @@
 		</div><!-- end Navigation Bar -->
 <div class='container'>
 <!-- Begin Markdown -->
-<h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Groovy Hook Scripts</h2><p>Gitblit uses Groovy for its push hook mechanism. This mechanism only executes when pushing to Gitblit, not when pushing to some other Git tooling in your stack.</p><p>The Groovy hook mechanism allows for dynamic extension of Gitblit to execute custom tasks on receiving and processing push events. The scripts run within the context of your Gitblit instance and therefore have access to Gitblit's internals at runtime.</p>
-<h3 class="section" id='H2'><a href="#H2" class="sectionlink"><i class="icon-share-alt"> </i></a>Rules, Requirements, & Behaviors</h3>
-<ol>
-  <li>Your Groovy scripts must be stored in the <em>groovy.scriptsFolder</em> as specified in <code>gitblit.properties</code> or <code>web.xml</code>.</li>
-  <li>All script files must have the <em>.groovy</em> extension. Because of this you may omit the extension when specifying the script.</li>
-  <li>Script filenames must not have spaces!</li>
-  <li>Scripts must be explicitly specified to be executed, no scripts are <em>automatically</em> executed by name or extension.</li>
-  <li>A script can be specified to run on <em>all repositories</em> by adding the script file name to <em>groovy.preReceiveScripts</em> or <em>groovy.postReceiveScripts</em> in <code>gitblit.properties</code> or <code>web.xml</code>.</li>
-  <li>Scripts can be specified for a team.</li>
-  <li>Scripts may also be specified per-repository in the repository's settings.</li>
-  <li>Globally-specified scripts and team-specified scripts are excluded from the list of available scripts in a repository's settings</li>
-  <li>Globally-specified scripts are executed first, in their listed order; followed by team-specified scripts in their listed order by alphabetical team order; followed by per-repository scripts, in their listed order.</li>
-  <li>A script may only be defined once in a pre-receive chain and once in a post-receive chain.<br/>You may execute the same script on pre-receive and post-receive, just not multiple times within a pre-receive or post-receive event.</li>
-  <li>Gitblit does not differentiate between what can be a pre-receive script and what can be a post-receive script.</li>
-  <li>If a script <em>returns false</em> then the hook chain is aborted and none of the subsequent scripts will execute.</li>
-</ol><p>Some sample scripts are included in the GO and WAR distributions to show you how you can tap into Gitblit with the provided bound variables. Additional implementation details may be specified in the header comment of these examples.</p><p>Hook contributions and improvements are welcome.</p>
-<h3 class="section" id='H3'><a href="#H3" class="sectionlink"><i class="icon-share-alt"> </i></a>Grapes</h3><p><em>SINCE 1.0.0</em></p><p><a href="http://groovy.codehaus.org/Grape">Grape</a> lets you quickly add maven repository dependencies to your Groovy hook script. </p>
-<blockquote>Grape (The Groovy Adaptable Packaging Engine or Groovy Advanced Packaging Engine) is the infrastructure enabling the grab() calls in Groovy, a set of classes leveraging <a href="http://ant.apache.org/ivy">Ivy</a> to allow for a repository driven module system for Groovy. This allows a developer to write a script with an essentially arbitrary library requirement, and ship just the script. Grape will, at runtime, download as needed and link the named libraries and all dependencies forming a transitive closure when the script is run from existing repositories such as Ibiblio, Codehaus, and java.net.</blockquote><p><pre>// create and use a primitive array
-import org.apache.commons.collections.primitives.ArrayIntList
-
-@Grab(group='commons-primitives', module='commons-primitives', version='1.0')
-def createEmptyInts() { new ArrayIntList() }
-
-def ints = createEmptyInts()
-ints.add(0, 42)
-assert ints.size() == 1
-assert ints.get(0) == 42
-</pre></p>
-<h3 class="section" id='H4'><a href="#H4" class="sectionlink"><i class="icon-share-alt"> </i></a>Custom Fields</h3><p><em>SINCE 1.0.0</em></p><p>Gitblit allows custom repository string fields to be defined in <code>gitblit.properties</code> or <code>web.xml</code>. Entry textfields are automatically created for these fields in the Edit Repository page of Gitblit and the Edit Repository dialog of the Gitblit Manager. These fields are accessible from your Groovy hook scripts as</p>
-<pre><code>repository.customFields.myField
-</code></pre><p>This feature allows you to customize the behavior of your hook scripts without hard-coding values in the hook scripts themselves.</p>
-<h3 class="section" id='H5'><a href="#H5" class="sectionlink"><i class="icon-share-alt"> </i></a>Pre-Receive</h3><p>Pre-Receive scripts execute after the pushed objects have all been written to the Git repository but before the refs have been updated to point to these new objects.</p><p>This is the appropriate point to block a push and is how many Git tools implement branch-write permissions.</p>
-<h3 class="section" id='H6'><a href="#H6" class="sectionlink"><i class="icon-share-alt"> </i></a>Post-Receive</h3><p>Post-Receive scripts execute after all refs have been updated.</p><p>This is the appropriate point to trigger continuous integration builds or send email notifications, etc.</p>
-<h2 class="section" id='H7'><a href="#H7" class="sectionlink"><i class="icon-share-alt"> </i></a>Push Email Notifications</h2><p>Gitblit implements email notifications in <em>sendmail.groovy</em> which uses the Groovy Hook Script mechanism. This allows for dynamic customization of the notification process at the installation site and serves as an example push script.</p>
-<h3 class="section" id='H8'><a href="#H8" class="sectionlink"><i class="icon-share-alt"> </i></a>Enabling Push Notifications</h3><p>In order to send email notifications on a push to Gitblit, this script must be specified somewhere in the <em>post-receive</em> script chain.<br/>You may specify <em>sendmail</em> in one of three places:</p>
-<ol>
-  <li><em>groovy.postReceiveScripts</em> in <code>gitblit.properties</code> or <code>web.xml</code>, globally applied to all repositories</li>
-  <li>post-receive scripts of a Team definition</li>
-  <li>post-receive scripts of a Repository definition</li>
-</ol>
-<h3 class="section" id='H9'><a href="#H9" class="sectionlink"><i class="icon-share-alt"> </i></a>Destination Addresses</h3><p>Gitblit does not currently support individual subscriptions to repositories; i.e. a <em>user</em> can not subscribe or unsubscribe from push notifications.</p><p>However, Repository Managers and Administrators can specify subscribed email addresses in one of three places:</p>
-<ol>
-  <li><em>mail.mailingLists</em> in <code>gitblit.properties</code> or <code>web.xml</code>, globally applied to all push-notified repositories</li>
-  <li>mailing lists in a Team definition, applied to all repositories that are part of the team definition</li>
-  <li>mailing lists in a Repository definition</li>
-</ol><p>All three sources are checked and merged into a unique list of destination addresses for push notifications.</p><p><strong>NOTE:</strong><br/>Care should be taken when devising your notification scheme as it relates to any VIEW restricted repositories you might have. Setting a global mailing list and activating push notifications for a VIEW restricted repository may send unwanted emails.
+<h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Setting up Tickets</h2><p><em>SINCE 1.4.0</em></p><p>By default, Gitblit is not configured for Tickets. There are several reasons for this, but the most important one is that you must choose the persistence backend that works best for you.</p>
+<h3 class="section" id='H2'><a href="#H2" class="sectionlink"><i class="icon-share-alt"> </i></a>tickets.service</h3><p><em>RESTART REQUIRED</em></p><p>The hardest part of setting up Gitblit Tickets is deciding which backend to use. Three implementations are provided, each with different strengths and weaknesses.</p>
+<h4 class="section" id='H3'><a href="#H3" class="sectionlink"><i class="icon-share-alt"> </i></a>File Ticket Service</h4>
+<pre><code>tickets.service = com.gitblit.tickets.FileTicketService
+</code></pre><p>Your ticket journals are persisted to <code>tickets/{shard}/{id}/journal.json</code>. These journals are stored on the filesystem within your .git directory.</p>
+<h4 class="section" id='H4'><a href="#H4" class="sectionlink"><i class="icon-share-alt"> </i></a>Branch Ticket Service</h4>
+<pre><code>tickets.service = com.gitblit.tickets.BranchTicketService
+</code></pre><p>Your ticket journals are persisted to <code>id/{shard}/{id}/journal.json</code>. These journals are stored on an orphan branch, <code>refs/meta/gitblit/tickets</code>, within your repository. This allows you to easily clone your entire ticket history to client working copies or to mirrors.</p>
+<h4 class="section" id='H5'><a href="#H5" class="sectionlink"><i class="icon-share-alt"> </i></a>Redis Ticket Service</h4>
+<pre><code>tickets.service = com.gitblit.tickets.RedisTicketService
+</code></pre><p>Your ticket journals are persisted to a Redis data store. <em>Make sure you configure your Redis instance for durability!!</em> This particular service is highly-scalable and very fast. Plus you can use all of the power of Redis replication, should you want.</p><p>The main drawback to this service is that Redis is primarily a Unix tool and works best on a Unix server. While there is a Windows port, sort-of maintained by Microsoft, it is not actively updated.</p>
+<pre><code>tickets.redis.url = redis://(:{password}@){hostname}:{port}(/{databaseId})
+</code></pre><p><strong>examples</strong></p>
+<pre><code>tickets.redis.url = redis://localhost:6379
+tickets.redis.url = redis://:password@localhost:6379/2
+</code></pre>
+<h3 class="section" id='H6'><a href="#H6" class="sectionlink"><i class="icon-share-alt"> </i></a>Other Settings</h3><p>You should also review the following settings before using Gitblit Tickets to understand what controls are available.</p>
+<h4 class="section" id='H7'><a href="#H7" class="sectionlink"><i class="icon-share-alt"> </i></a>web.canonicalUrl</h4>
+<pre><code>web.canonicalUrl = https://localhost:8443
+</code></pre><p>The Tickets feature sends rich email notifications to those who are participating or watching a ticket. In order for the links in those emails to work properly, you really should set the canonical web url of your Gitblit install. This url should be your public url used to browse and navigate the website.</p>
+<h4 class="section" id='H8'><a href="#H8" class="sectionlink"><i class="icon-share-alt"> </i></a>tickets.acceptNewTickets</h4>
+<pre><code>tickets.acceptNewTickets = true
+</code></pre><p>This setting is used to globally disable manual creation of tickets through the web ui. You may still create proposal tickets by pushing patchsets.</p><p>You may decide to disable creation of new tickets at the repository level in the <em>Edit Repository</em> page, however if this global setting is false, it will trump the repository setting.</p>
+<h4 class="section" id='H9'><a href="#H9" class="sectionlink"><i class="icon-share-alt"> </i></a>tickets.acceptNewPatchsets</h4>
+<pre><code>tickets.acceptNewPatchsets = true
+</code></pre><p>This setting is used to globally disable accepting new patchsets. If this set false, you can not create proposal tickets BUT you can still create tickets through the web ui, assuming <em>tickets.acceptNewTickets=true</em>.</p><p>You may decide to disable accepting new patchsets at the repository level in the <em>Edit Repository</em> page, however if this global setting is false it will trump the repository setting.</p>
+<h4 class="section" id='H10'><a href="#H10" class="sectionlink"><i class="icon-share-alt"> </i></a>tickets.requireApproval</h4>
+<pre><code>tickets.requireApproval = false
+</code></pre><p>This setting is the default for requiring an approve review score (+2) before enabling the merge button in the web ui. This setting is not considered during the push process so an integrator may push a merged ticket disregarding this approval setting. The setting only affects the web ui and may be configured per-repository.</p>
+<h4 class="section" id='H11'><a href="#H11" class="sectionlink"><i class="icon-share-alt"> </i></a>tickets.indexFolder</h4><p><em>RESTART REQUIRED</em></p>
+<pre><code>tickets.indexFolder = ${baseFolder}/tickets/lucene
+</code></pre><p>This is the destination for the unified Lucene ticket index. You probably won't need to change this, but it's configurable if the need arises.</p>
+<h3 class="section" id='H12'><a href="#H12" class="sectionlink"><i class="icon-share-alt"> </i></a>Setting up a Repository</h3>
+<h4 class="section" id='H13'><a href="#H13" class="sectionlink"><i class="icon-share-alt"> </i></a>Controlling Tickets</h4><p>Each repository can accept or reject tickets and/or patchsets by the repository settings.</p>
+<h5 class="section" id='H14'><a href="#H14" class="sectionlink"><i class="icon-share-alt"> </i></a>Issue-Tracker, no patchsets</h5>
+<pre><code>allow new tickets = true
+accept patchsets = false
+</code></pre>
+<h5 class="section" id='H15'><a href="#H15" class="sectionlink"><i class="icon-share-alt"> </i></a>Proposals only, no user-reported issues</h5>
+<pre><code>allow new tickets = false
+accept patchsets = true
+</code></pre>
+<h5 class="section" id='H16'><a href="#H16" class="sectionlink"><i class="icon-share-alt"> </i></a>Issue-tracker AND Proposals</h5>
+<pre><code>allow new tickets = true
+accept patchsets = true
+</code></pre>
+<h5 class="section" id='H17'><a href="#H17" class="sectionlink"><i class="icon-share-alt"> </i></a>No tickets whatsoever</h5>
+<pre><code>allow new tickets = false
+accept patchsets = false
+</code></pre>
+<h4 class="section" id='H18'><a href="#H18" class="sectionlink"><i class="icon-share-alt"> </i></a>Controlling Merges</h4><p>Gitblit has a simple review scoring mechanism designed to indicate overall impression of the patchset. You may optionally configure your repository to require an approval score for a patchset revision BEFORE the Merge button is displayed/enabled. This per-repository setting is not respected if an integrator pushes a merge. This setting is only used to control the web ui.</p>
+<h4 class="section" id='H19'><a href="#H19" class="sectionlink"><i class="icon-share-alt"> </i></a>Milestones</h4><p>Milestones are a way to group tickets together. Currently milestones are specified at the repository level and are stored in the repository git config file. Gitblit's internal architecture has all the methods necessary to maintain milestones, but this functionality is not yet exposed through the web ui. For now you will have to control milestones manually with a text editor.</p>
+<pre><code>[milestone &quot;v1.5.0&quot;]
+    status = Open
+    due = 2014-06-01
+    color = &quot;#00f000&quot;
+</code></pre><p>Please note the date format for the <em>due</em> field: yyyy-MM-dd.
 <!-- End Markdown -->
-<div ><ul class="pager"><li class="previous"><a href="setup_authentication.html">&larr; authentication</a></li> <li class="next"><a href="setup_lucene.html">lucene indexing &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-09</p>
+<div ><ul class="pager"><li class="previous"><a href="tickets_barnum.html">&larr; barnum</a></li> <li class="next"><a href="tickets_replication.html">replication & advanced administration &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-09</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>
