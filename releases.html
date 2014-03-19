@@ -119,15 +119,15 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.0.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.0.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.0.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.0.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
@@ -166,6 +166,53 @@
 	<table class="table">
 		<tbody>
 		<!-- RELEASE HISTORY -->
+		<tr id="1.4.1">
+			<td style="width:100px" id="1.4.1">
+				<b><a href="#1.4.1">1.4.1</a></b><br/>
+				2014-03-18
+			</td>
+			<td>		<p class="lead">Gitblit 1.4.1 released</p>		
+	
+	
+		<blockquote><p>!! IMPORTANT BUG FIX FOR EXTERNAL AUTHENTICATION (1.4.1) !!<br /><br />This is a MAJOR release (1.4.0).<br /><br />The entire core has been refactored to be more modular.  Authentication providers have all been refactored to be simpler.  Both of these were precursor requirements for landing the Tickets feature -- issue tracker &amp; branch-based pull requests.<br /><br />Markup rendering has been improved and expanded to several additional formats.  A repository mirroring service  has been added to allow you to automatically track public repositories.  Commit pages now indicate diffstat information and many bug fixes and smaller features have been introduced.<br /><br />The groundwork has also been laid for SSH support which will be in the focal point for the next major release (<a href='https://dev.gitblit.com/tickets/gitblit.git/6'>ticket 6</a>).<br /><br />Due to the enormity of these changes, please make a backup copy of users.conf before updating.</p></blockquote>		
+
+		<div class="alert alert-info">
+			<h4>Note</h4>
+			The default access restriction has been elevated from NONE to PUSH and anonymous push access has been disabled by default.
+		</div>
+
+   	<h4 style="color:red;">security</h4>
+	<ul>
+		<li>Fix major authentication security hole when using external authentication providers (<a href='http://code.google.com/p/gitblit/issues/detail?id=387'>issue 387</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/35'>ticket 35</a>)</li>
+	</ul>
+   	<h4>fixes</h4>
+	<ul>
+		<li>Fixed incorrect branch ref in Ticket page for symlinks (<a href='http://code.google.com/p/gitblit/issues/detail?id=383'>issue 383</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/32'>ticket 32</a>)</li>
+		<li>Fix NPE in FileTicketService (<a href='http://code.google.com/p/gitblit/issues/detail?id=386'>issue 386</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/34'>ticket 34</a>)</li>
+		<li>Watch list push parameters were now always honored (<a href='https://dev.gitblit.com/tickets/gitblit.git/30'>ticket 30</a>)</li>
+		<li>Watch list push parameters were not always validated (<a href='https://dev.gitblit.com/tickets/gitblit.git/29'>ticket 29</a>)</li>
+		<li>Truncated tag messages in the tag panel did not have proper tooltips (<a href='https://dev.gitblit.com/tickets/gitblit.git/31'>ticket 31</a>)</li>
+		<li>Fix merging GO runtime settings with command-line override settings (<a href='https://dev.gitblit.com/tickets/gitblit.git/33'>ticket 33</a>)</li>
+		<li>Fix ticket page IOBE on Ticket page when Gitblit is not serving repositories (<a href='https://dev.gitblit.com/tickets/gitblit.git/27'>ticket 27</a>)</li>
+		<li>Exclude ticket branches when forking a repository (<a href='https://dev.gitblit.com/tickets/gitblit.git/26'>ticket 26</a>)</li>
+		<li>Workaround pegdown bug and improve relative image path processing (<a href='https://dev.gitblit.com/tickets/gitblit.git/24'>ticket 24</a>)</li>
+		<li>Disable Ticket review functions in read-only repositories (mirror, frozen, etc)</li>
+		<li>Fix incorrect git fetch instructions in Ticket email notifications</li>
+		<li>Fix Ticket email notification recipients to include repository owners</li>
+		<li>Fix Ticket propose instructions to branch from origin/{integrationBranch}</li>
+	</ul>
+   	<h4>changes</h4>
+	<ul>
+		<li>Add closed status for milestones and abandoned status for tickets (<a href='https://dev.gitblit.com/tickets/gitblit.git/25'>ticket 25</a>)</li>
+	</ul>
+   	<h4>contributors</h4>
+	<ul>
+		<li>David Ostrovsky</li>
+		<li>James Moger</li>
+		<li>Liyu Wang</li>
+	</ul>
+</td>
+		</tr>
 		<tr id="1.4.0">
 			<td style="width:100px" id="1.4.0">
 				<b><a href="#1.4.0">1.4.0</a></b><br/>
@@ -1656,7 +1703,7 @@ You will need to move a few files around when upgrading.  Please review the <a h
 	</table>
 
 <!-- End Markdown -->
-<footer class="footer"><p class="pull-right">generated 2014-03-09</p>
+<footer class="footer"><p class="pull-right">generated 2014-03-18</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

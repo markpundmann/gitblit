@@ -119,15 +119,15 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.0.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.0.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.0.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.0.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
@@ -161,14 +161,14 @@
 <!-- Begin Markdown -->
 
 <!-- CURRENT RELEASE -->
-	<h3 id="1.4.0" class="section"><a href="#1.4.0" class="sectionlink"><i class="icon-share-alt"> </i></a>Current Release (1.4.0) <small>this is the current stable release</small></h3>
+	<h3 id="1.4.1" class="section"><a href="#1.4.1" class="sectionlink"><i class="icon-share-alt"> </i></a>Current Release (1.4.1) <small>this is the current stable release</small></h3>
 	<table class="table">
 		<tbody>
 			<tr>
-				<td style="background-color:inherit;width:100px">2014-03-09</td>
+				<td style="background-color:inherit;width:100px">2014-03-18</td>
 				<td style="background-color:inherit;">	
 	
-		<blockquote><p>This is a MAJOR release.<br /><br />The entire core has been refactored to be more modular.  Authentication providers have all been refactored to be simpler.  Both of these were precursor requirements for landing the Tickets feature -- issue tracker &amp; branch-based pull requests.<br /><br />Markup rendering has been improved and expanded to several additional formats.  A repository mirroring service  has been added to allow you to automatically track public repositories.  Commit pages now indicate diffstat information and many bug fixes and smaller features have been introduced.<br /><br />The groundwork has also been laid for SSH support which will be in the focal point for the next major release (<a href='https://dev.gitblit.com/tickets/gitblit.git/6'>ticket 6</a>).<br /><br />Due to the enormity of these changes, please make a backup copy of users.conf before updating.</p></blockquote>		
+		<blockquote><p>!! IMPORTANT BUG FIX FOR EXTERNAL AUTHENTICATION (1.4.1) !!<br /><br />This is a MAJOR release (1.4.0).<br /><br />The entire core has been refactored to be more modular.  Authentication providers have all been refactored to be simpler.  Both of these were precursor requirements for landing the Tickets feature -- issue tracker &amp; branch-based pull requests.<br /><br />Markup rendering has been improved and expanded to several additional formats.  A repository mirroring service  has been added to allow you to automatically track public repositories.  Commit pages now indicate diffstat information and many bug fixes and smaller features have been introduced.<br /><br />The groundwork has also been laid for SSH support which will be in the focal point for the next major release (<a href='https://dev.gitblit.com/tickets/gitblit.git/6'>ticket 6</a>).<br /><br />Due to the enormity of these changes, please make a backup copy of users.conf before updating.</p></blockquote>		
 
 		<div class="alert alert-info">
 			<h4>Note</h4>
@@ -177,210 +177,33 @@
 
    	<h4 style="color:red;">security</h4>
 	<ul>
-		<li><a href='http://code.google.com/p/gitblit/issues/detail?id=361'>issue 361</a>: Cookies were not reset on administrative password change of a user account. This allowed accounts with changed passwords to continue authenticating. Cookies are now reset on password changes, they are validated on each page request, AND they will now expire 7 days after generation.</li>
+		<li>Fix major authentication security hole when using external authentication providers (<a href='http://code.google.com/p/gitblit/issues/detail?id=387'>issue 387</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/35'>ticket 35</a>)</li>
 	</ul>
    	<h4>fixes</h4>
 	<ul>
-		<li>Fixed incorrect tagger attribution in the dashboard (<a href='http://code.google.com/p/gitblit/issues/detail?id=276'>issue 276</a>)</li>
-		<li>Fixed support for implied SSH urls in web.otherUrls (<a href='http://code.google.com/p/gitblit/issues/detail?id=311'>issue 311</a>)</li>
-		<li>Fixed injection of unnecessary explicit CLONE permissions for a fork when users or teams already had implied regex permissions (<a href='http://code.google.com/p/gitblit/issues/detail?id=320'>issue 320</a>)</li>
-		<li>Bind LDAP connection after establishing TLS initialization (<a href='http://code.google.com/p/gitblit/issues/detail?id=343'>issue 343</a>)</li>
-		<li>Fixed NPE when attempting to add a permission without a registrant (<a href='http://code.google.com/p/gitblit/issues/detail?id=344'>issue 344</a>)</li>
-		<li>Invalidate all cached repository data on &quot;clear cache&quot; (<a href='http://code.google.com/p/gitblit/issues/detail?id=346'>issue 346</a>)</li>
-		<li>Fix chart failures when an apostrophe is in a user display name (<a href='http://code.google.com/p/gitblit/issues/detail?id=350'>issue 350</a>, <a href='https://github.com/gitblit/gitblit/pull/128'>pull request #128</a>)</li>
-		<li>Fix exception in create repository when not selecting a garbage collection period (<a href='http://code.google.com/p/gitblit/issues/detail?id=366'>issue 366</a>)</li>
-		<li>Stop setting admin permission based on undocumented Redmine REST API behavior (<a href='http://code.google.com/p/gitblit/issues/detail?id=368'>issue 368</a>)</li>
-		<li>Fix compage page failure when a submodule is changed in the commit range (<a href='http://code.google.com/p/gitblit/issues/detail?id=375'>issue 375</a>)</li>
-		<li>Fix support url decoding with non-ascii characters (<a href='https://github.com/gitblit/gitblit/pull/136'>pull request #136</a>)</li>
-		<li>Fix potential NPE on removing uncached repository from cache</li>
-		<li>Ignore the default contents of .git/description file</li>
-		<li>Fix error on generating activity page when there is no activity</li>
-		<li>Fix raw page content type of binaries when running behind a reverse proxy</li>
-		<li>Fix author search links from compare pages</li>
+		<li>Fixed incorrect branch ref in Ticket page for symlinks (<a href='http://code.google.com/p/gitblit/issues/detail?id=383'>issue 383</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/32'>ticket 32</a>)</li>
+		<li>Fix NPE in FileTicketService (<a href='http://code.google.com/p/gitblit/issues/detail?id=386'>issue 386</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/34'>ticket 34</a>)</li>
+		<li>Watch list push parameters were now always honored (<a href='https://dev.gitblit.com/tickets/gitblit.git/30'>ticket 30</a>)</li>
+		<li>Watch list push parameters were not always validated (<a href='https://dev.gitblit.com/tickets/gitblit.git/29'>ticket 29</a>)</li>
+		<li>Truncated tag messages in the tag panel did not have proper tooltips (<a href='https://dev.gitblit.com/tickets/gitblit.git/31'>ticket 31</a>)</li>
+		<li>Fix merging GO runtime settings with command-line override settings (<a href='https://dev.gitblit.com/tickets/gitblit.git/33'>ticket 33</a>)</li>
+		<li>Fix ticket page IOBE on Ticket page when Gitblit is not serving repositories (<a href='https://dev.gitblit.com/tickets/gitblit.git/27'>ticket 27</a>)</li>
+		<li>Exclude ticket branches when forking a repository (<a href='https://dev.gitblit.com/tickets/gitblit.git/26'>ticket 26</a>)</li>
+		<li>Workaround pegdown bug and improve relative image path processing (<a href='https://dev.gitblit.com/tickets/gitblit.git/24'>ticket 24</a>)</li>
+		<li>Disable Ticket review functions in read-only repositories (mirror, frozen, etc)</li>
+		<li>Fix incorrect git fetch instructions in Ticket email notifications</li>
+		<li>Fix Ticket email notification recipients to include repository owners</li>
+		<li>Fix Ticket propose instructions to branch from origin/{integrationBranch}</li>
 	</ul>
    	<h4>changes</h4>
 	<ul>
-		<li>Gitblit now rejects pushes to identified mirror repositories (<a href='http://code.google.com/p/gitblit/issues/detail?id=5'>issue 5</a>)</li>
-		<li>Personal repository prefix (~) is now configurable (<a href='http://code.google.com/p/gitblit/issues/detail?id=265'>issue 265</a>)</li>
-		<li>Refactored user services and separated authentication into providers (<a href='http://code.google.com/p/gitblit/issues/detail?id=281'>issue 281</a>)</li>
-		<li>Reversed line links in blob view (<a href='http://code.google.com/p/gitblit/issues/detail?id=309'>issue 309</a>)</li>
-		<li>Dashboard and Activity pages now obey the web.generateActivityGraph setting (<a href='http://code.google.com/p/gitblit/issues/detail?id=310'>issue 310</a>)</li>
-		<li>Do not log passwords on failed authentication attempts (<a href='http://code.google.com/p/gitblit/issues/detail?id=316'>issue 316</a>)</li>
-		<li>LDAP synchronization is now scheduled rather than on-demand (<a href='http://code.google.com/p/gitblit/issues/detail?id=336'>issue 336</a>)</li>
-		<li>Show displayname and username in palettes (<a href='http://code.google.com/p/gitblit/issues/detail?id=364'>issue 364</a>)</li>
-		<li>Updated default binary and Lucene ignore extensions</li>
-		<li>Change the WAR baseFolder context parameter to a JNDI env-entry to improve enterprise deployments</li>
-		<li>Removed internal Gitblit ref exclusions in the upload pack</li>
-		<li>Removed &quot;show readme&quot; setting in favor of automatic detection</li>
-		<li>README files are not shown on the summary page by default, this can be restored with web.summaryShowReadme</li>
-		<li>Support plain text, markdown, confluence, mediawiki, textile, tracwiki, or twiki &quot;readme&quot; files</li>
-		<li>Determine best commit id (e.g. &quot;master&quot;) for the tree and docs pages and use that in links</li>
-		<li>By default GO will now bind to all interfaces for both http and https connectors.  This simplifies setup for first-time users.</li>
-		<li>Removed docs indicator on the repositories page</li>
-		<li>Removed the repository setting to enable Markdown document enumeration, this is now automatic and expanded</li>
-		<li>Retrieve LDAP groups with dereferencing aliases (<a href='https://github.com/gitblit/gitblit/pull/122'>pull request #122</a>)</li>
-		<li>Revised committer verification to require a matching displayname or account name AND the email address</li>
-		<li>Serve repositories on both /r and /git, displaying /r because it is shorter</li>
-		<li>Eliminate HEAD from the blob, blame, and tree pages. That assumed a resource was available in HEAD and it may not be.</li>
-		<li>Eliminate Gravatar profile linking.</li>
-		<li>Moved Gitblit reflog from refs/gitblit/reflog to refs/meta/gitblit/reflog</li>
-		<li>Updated Spanish translation</li>
-		<li>Updated Simplified Chinese translation</li>
-		<li>Updated Dutch translation</li>
-		<li>Updated Korean translation</li>
-	</ul>
-   	<h4>additions</h4>
-	<ul>
-		<li>Added color modes for the blame page (<a href='http://code.google.com/p/gitblit/issues/detail?id=2'>issue 2</a>)</li>
-		<li>Added an optional MirrorService which will periodically fetch ref updates from source repositories for mirrors (<a href='http://code.google.com/p/gitblit/issues/detail?id=5'>issue 5</a>).  Repositories must be manually cloned using native git and &quot;--mirror&quot;.</li>
-		<li>Added branch graph image servlet based on EGit's branch graph renderer (<a href='http://code.google.com/p/gitblit/issues/detail?id=194'>issue 194</a>)</li>
-		<li>Added option to render Markdown commit messages (<a href='http://code.google.com/p/gitblit/issues/detail?id=203'>issue 203</a>)</li>
-		<li>Added Ticket tracker and Patchset collaboration feature (<a href='http://code.google.com/p/gitblit/issues/detail?id=215'>issue 215</a>)</li>
-		<li>Added setting to control creating a repository as --shared on Unix servers (<a href='http://code.google.com/p/gitblit/issues/detail?id=263'>issue 263</a>)</li>
-		<li>Set Link: &lt;url&gt;; rel=&quot;canonical&quot; http header for SEO (<a href='http://code.google.com/p/gitblit/issues/detail?id=304'>issue 304</a>)</li>
-		<li>Added raw links to the commit, commitdiff, and compare pages (<a href='http://code.google.com/p/gitblit/issues/detail?id=319'>issue 319</a>)</li>
-		<li>Support intradocument linking in Markdown content using [[WikiLinks]] syntax (<a href='http://code.google.com/p/gitblit/issues/detail?id=324'>issue 324</a>)</li>
-		<li>Support Markdown image links relative to the repository root (<a href='http://code.google.com/p/gitblit/issues/detail?id=324'>issue 324</a>)</li>
-		<li>Added filesystem write permission check (<a href='http://code.google.com/p/gitblit/issues/detail?id=345'>issue 345</a>)</li>
-		<li>Added GO launch parameter for redirecting logging to a rolling, daily log file (<a href='http://code.google.com/p/gitblit/issues/detail?id=348'>issue 348</a>)</li>
-		<li>Added settings to Windows authentication provider to permit/prohibit BUILTIN\Administrators from being Gitblit Admins (<a href='http://code.google.com/p/gitblit/issues/detail?id=354'>issue 354</a>)</li>
-		<li>Added canonical url setting for email notifications and web display</li>
-		<li>Support rendering confluence, mediawiki, textile, tracwiki, and twiki markup documents</li>
-		<li>Added setting to globally disable anonymous pushes in the receive pack</li>
-		<li>Added a normalized diffstat display to the commit, commitdiff, and compare pages</li>
-		<li>Added GO setting to automatically redirect all http requests to the secure https connector</li>
-		<li>Automatically display common repository root documents as tabs on the docs page</li>
-		<li>Support bugtraq configuration in collaboration with Syntevo,  the regex.* config keys are now DEPRECATED</li>
-		<li>Added FishEye hook script (<a href='https://github.com/gitblit/gitblit/pull/137'>pull request #137</a>)</li>
-		<li>Added Redmine Fetch hook script (<a href='http://code.google.com/p/gitblit/issues/detail?id=359'>issue 359</a>)</li>
-		<li>Added Subgit hook contributed by TMate Software</li>
-		<li>Added function to retain a user account but prohibit authentication. This is an alternative to deleting a user account.</li>
-		<li>Added setting to hide the top-level navigation header to facilitate embedding Gitblit in something else.</li>
-		<li>Added RPC request to reindex tickets</li>
-	</ul>
-   	<h4>new settings</h4>
-	<table class="table">
-		<tr>
-			<td><em>git.createRepositoriesShared</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>git.allowAnonymousPushes</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>git.defaultAccessRestriction</em></td><td>PUSH</td>
-		</tr>
-		<tr>
-			<td><em>git.enableMirroring</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>git.mirrorPeriod</em></td><td>30 mins</td>
-		</tr>
-		<tr>
-			<td><em>git.userRepositoryPrefix</em></td><td>~</td>
-		</tr>
-		<tr>
-			<td><em>realm.authenticationProviders</em></td><td></td>
-		</tr>
-		<tr>
-			<td><em>realm.ldap.groupEmptyMemberPattern</em></td><td>(&(objectClass=group)(!(member=*)))</td>
-		</tr>
-		<tr>
-			<td><em>realm.ldap.synchronize</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>realm.ldap.syncPeriod</em></td><td>5 MINUTES</td>
-		</tr>
-		<tr>
-			<td><em>realm.ldap.removeDeletedUsers</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>realm.windows.permitBuiltInAdministrators</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>web.canonicalUrl</em></td><td></td>
-		</tr>
-		<tr>
-			<td><em>web.commitMessageRenderer</em></td><td>plain</td>
-		</tr>
-		<tr>
-			<td><em>web.documents</em></td><td>readme home index changelog contributing submitting_patches copying license notice authors</td>
-		</tr>
-		<tr>
-			<td><em>web.hideHeader</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>web.showBranchGraph</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>web.summaryShowReadme</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>server.redirectToHttpsPort</em></td><td>false</td>
-		</tr>
-		<tr>
-			<td><em>tickets.service</em></td><td></td>
-		</tr>
-		<tr>
-			<td><em>tickets.acceptNewTickets</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>tickets.acceptNewPatchsets</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>tickets.requireApproval</em></td><td>false</td>
-		</tr>
-	</table>
-   	<h4>dependency changes</h4>
-	<ul>
-		<li>updated to Jetty 8.1.13</li>
-		<li>updated to JGit 3.3.0</li>
-		<li>updated to Lucene 4.6.0</li>
-		<li>updated to BouncyCastle 1.49</li>
-		<li>replaced MarkdownPapers with pegdown 1.4.2</li>
-		<li>added Dagger 1.1.0</li>
-		<li>added Eclipse WikiText libraries for processing confluence, mediawiki, textile, tracwiki, and twiki</li>
-		<li>added FontAwesome 4.0.3</li>
-		<li>added Jedis 2.3.1</li>
+		<li>Add closed status for milestones and abandoned status for tickets (<a href='https://dev.gitblit.com/tickets/gitblit.git/25'>ticket 25</a>)</li>
 	</ul>
    	<h4>contributors</h4>
 	<ul>
-		<li>Alex Lewis</li>
-		<li>Alfred Schmid</li>
-		<li>Benjamin Asbach</li>
-		<li>Berke Viktor</li>
-		<li>Bret Ikehara</li>
-		<li>Chad Horohoe</li>
-		<li>Chris Graham</li>
 		<li>David Ostrovsky</li>
-		<li>Domingo Oropeza</li>
-		<li>Dongsu, KIM</li>
-		<li>Duncan Jauncey</li>
-		<li>Eduardo Guervós Narvaez</li>
-		<li>Florian Zschocke</li>
-		<li>fpeters.fae</li>
-		<li>Gareth Collins</li>
-		<li>Guenter Dressel</li>
-		<li>I. Tagliani</li>
 		<li>James Moger</li>
-		<li>Jeroen Baten</li>
-		<li>Johann Fischer</li>
-		<li>Klaus Nuber</li>
 		<li>Liyu Wang</li>
-		<li>M. Holmquist</li>
-		<li>Marc Strapetz</li>
-		<li>Markus Foempe</li>
-		<li>Martijn van der Kleijn</li>
-		<li>Matthias Cullman</li>
-		<li>Matthias Cullman</li>
-		<li>Michael Wowro</li>
-		<li>Nasrollah Kavian</li>
-		<li>Rhys Evans</li>
-		<li>Rick Sladkey</li>
-		<li>Robin Rosenberg</li>
-		<li>Stardrad Yin</li>
-		<li>Stephan Krull</li>
-		<li>Tamás Papp</li>
-		<li>Vitaly Litvak</li>
 	</ul>
 </td>
 			</tr>
@@ -396,7 +219,7 @@
 </div>
 
 <!-- End Markdown -->
-<footer class="footer"><p class="pull-right">generated 2014-03-09</p>
+<footer class="footer"><p class="pull-right">generated 2014-03-18</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

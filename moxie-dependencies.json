@@ -1,6 +1,6 @@
 {
     "ring" : "0",
-    "name" : "gitblit 1.4.0",
+    "name" : "gitblit 1.4.1",
     "children" : [
     {
         "ring" : "1",

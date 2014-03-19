@@ -119,15 +119,15 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.0.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.0.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.0.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.0.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
@@ -161,7 +161,7 @@
 <!-- Begin Markdown -->
 <h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Gitblit WAR Installation & Setup</h2>
 <ol>
-  <li>Download Gitblit WAR <a href="http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.0.war">1.4.0</a> to the webapps folder of your servlet container.</li>
+  <li>Download Gitblit WAR <a href="http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war">1.4.1</a> to the webapps folder of your servlet container.</li>
   <li>You may have to manually extract the WAR (zip file) to a folder within your webapps folder.</li>
   <li>By default, the Gitblit webapp is configured through <code>WEB-INF/data/gitblit.properties</code>.<br/>Open <code>WEB-INF/data/gitblit.properties</code> in your favorite text editor and make sure to review and set:
   <ul>
@@ -174,7 +174,7 @@
 </ol>
 <h3 class="section" id='H2'><a href="#H2" class="sectionlink"><i class="icon-share-alt"> </i></a>WAR Data Location</h3><p>By default, Gitblit WAR stores all data (users, settings, repositories, etc) in <code>${contextFolder}/WEB-INF/data</code>. This is fine for a quick setup, but there are many reasons why you don't want to keep your data within the webapps folder of your servlet container. You may specify an external location for your data by editing <code>WEB-INF/web.xml</code> and manipulating the <em>baseFolder</em> context parameter. Choose a location that is writeable by your servlet container. Your servlet container may be smart enough to recognize the change and to restart Gitblit.</p><p>On the next restart of Gitblit, Gitblit will copy the contents of the <code>WEB-INF/data</code> folder to your specified <em>baseFolder</em> <strong>IF</strong> the file <code>${baseFolder}/gitblit.properties</code> does not already exist. This allows you to get going with minimal fuss.</p><p>Specifying an alternate <em>baseFolder</em> also allows for simpler upgrades in the future.
 <!-- End Markdown -->
-<div ><ul class="pager"> <li class="next"><a href="upgrade_war.html">upgrade WAR &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-09</p>
+<div ><ul class="pager"> <li class="next"><a href="upgrade_war.html">upgrade WAR &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-18</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>
