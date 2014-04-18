@@ -84,10 +84,11 @@
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
-<a tabindex='-1' href='#'>Client Configuration</a>
+<a tabindex='-1' href='#'>Client Usage</a>
 <ul class='dropdown-menu'>
-<li><a href='setup_client.html'>git client setup</a></li>
-<li><a href='eclipse_plugin.html'>eclipse plugin</a></li>
+<li><a href='setup_transport_http.html'>using HTTP/HTTPS</a></li>
+<li><a href='setup_transport_ssh.html'>using SSH</a></li>
+<li><a href='eclipse_plugin.html'>using the Eclipse plugin</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
@@ -98,6 +99,13 @@
 <li><a href='tickets_barnum.html'>barnum</a></li>
 <li><a href='tickets_setup.html'>setup</a></li>
 <li><a href='tickets_replication.html'>replication & advanced administration</a></li>
+</ul></li> <!-- End Submenu -->
+<li class='divider'></li>
+<li class='dropdown-submenu'> <!-- Submenu -->
+<a tabindex='-1' href='#'>Plugins</a>
+<ul class='dropdown-menu'>
+<li><a href='plugins_overview.html'>overview</a></li>
+<li><a href='plugins_extensions.html'>extension points</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li><a href='federation.html'>federation</a></li>
@@ -119,18 +127,20 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
+<li class='divider'></li>
+<li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
 </ul></li> <!-- End Menu -->
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
@@ -139,6 +149,8 @@
 <li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
 <li class='divider'></li>
 <li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li class='divider'></li>
+<li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
 <li><a href='https://github.com/gitblit/gitblit'>Github</a></li>
 <li><a href='http://code.google.com/p/gitblit/issues/list'>Issues</a></li>
@@ -254,6 +266,52 @@
 <span style="color:#004000;"># RESTART REQUIRED</span><br/>
 <span style="color:#000080;">git.daemonPort</span> = <span style="color:#800000;">9418</span><br/>
 <br/>
+<span style="color:#004000;"># The port for serving the SSH service. &lt;= 0 disables this service.</span><br/>
+<span style="color:#004000;"># On Unix/Linux systems, ports &lt; 1024 require root permissions.</span><br/>
+<span style="color:#004000;"># Recommended value: 29418</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#004000;"># RESTART REQUIRED</span><br/>
+<span style="color:#000080;">git.sshPort</span> = <span style="color:#800000;">29418</span><br/>
+<br/>
+<span style="color:#004000;"># Specify the interface for the SSH daemon to bind its service.</span><br/>
+<span style="color:#004000;"># You may specify an ip or an empty value to bind to all interfaces.</span><br/>
+<span style="color:#004000;"># Specifying localhost will result in Gitblit ONLY listening to requests to</span><br/>
+<span style="color:#004000;"># localhost.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#004000;"># RESTART REQUIRED</span><br/>
+<span style="color:#000080;">git.sshBindInterface</span> = <span style="color:#800000;"></span><br/>
+<br/>
+<span style="color:#004000;"># Specify the SSH key manager to use for retrieving, storing, and removing</span><br/>
+<span style="color:#004000;"># SSH keys.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># Valid key managers are:</span><br/>
+<span style="color:#004000;"># com.gitblit.transport.ssh.FileKeyManager</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.sshKeysManager</span> = <span style="color:#800000;">com.gitblit.transport.ssh.FileKeyManager</span><br/>
+<br/>
+<span style="color:#004000;"># Directory for storing user SSH keys when using the FileKeyManager.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.sshKeysFolder</span> = <span style="color:#800000;">${baseFolder}/ssh</span><br/>
+<br/>
+<span style="color:#004000;"># SSH backend NIO2|MINA.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># The Apache Mina project recommends using the NIO2 backend.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.sshBackend</span> = <span style="color:#800000;">NIO2</span><br/>
+<br/>
+<span style="color:#004000;"># Number of threads used to parse a command line submitted by a client over SSH</span><br/>
+<span style="color:#004000;"># for execution, create the internal data structures used by that command,</span><br/>
+<span style="color:#004000;"># and schedule it for execution on another thread.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.sshCommandStartThreads</span> = <span style="color:#800000;">2</span><br/>
+<br/>
+<br/>
 <span style="color:#004000;"># Allow push/pull over http/https with JGit servlet.</span><br/>
 <span style="color:#004000;"># If you do NOT want to allow Git clients to clone/push to Gitblit set this</span><br/>
 <span style="color:#004000;"># to false. You might want to do this if you are only using ssh:// or git://.</span><br/>
@@ -291,6 +349,16 @@
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># SINCE 0.9.0</span><br/>
 <span style="color:#000080;">git.onlyAccessBareRepositories</span> = <span style="color:#800000;">false</span><br/>
+<br/>
+<br/>
+<span style="color:#004000;"># Specify the list of acceptable transports for pushes.</span><br/>
+<span style="color:#004000;"># If this setting is empty, all transports are acceptable.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># Valid choices are: GIT HTTP HTTPS SSH</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#004000;"># SPACE-DELIMITED</span><br/>
+<span style="color:#000080;">git.acceptedPushTransports</span> = <span style="color:#800000;">HTTP HTTPS SSH</span><br/>
 <br/>
 <span style="color:#004000;"># Allow an authenticated user to create a destination repository on a push if</span><br/>
 <span style="color:#004000;"># the repository does not already exist.</span><br/>
@@ -602,6 +670,45 @@
 <span style="color:#004000;"># RESTART REQUIRED</span><br/>
 <span style="color:#000080;">git.packedGitMmap</span> = <span style="color:#800000;">false</span><br/>
 <br/>
+<span style="color:#004000;"># Validate all received (pushed) objects are valid.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.checkReceivedObjects</span> = <span style="color:#800000;">true</span><br/>
+<br/>
+<span style="color:#004000;"># Validate all referenced but not supplied objects are reachable.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># If enabled, Gitblit will verify that references to objects not contained</span><br/>
+<span style="color:#004000;"># within the received pack are already reachable through at least one other</span><br/>
+<span style="color:#004000;"># reference advertised to clients.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># This feature is useful when Gitblit doesn't trust the client to not provide a</span><br/>
+<span style="color:#004000;"># forged SHA-1 reference to an object, in an attempt to access parts of the DAG</span><br/>
+<span style="color:#004000;"># that they aren't allowed to see and which have been hidden from them via the</span><br/>
+<span style="color:#004000;"># configured AdvertiseRefsHook or RefFilter.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># Enabling this feature may imply at least some, if not all, of the same functionality</span><br/>
+<span style="color:#004000;"># performed by git.checkReceivedObjects.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.checkReferencedObjectsAreReachable</span> = <span style="color:#800000;">true</span><br/>
+<br/>
+<span style="color:#004000;"># Set the maximum allowed Git object size.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># If an object is larger than the given size the pack-parsing will throw an exception</span><br/>
+<span style="color:#004000;"># aborting the receive-pack operation. The default value, 0, disables maximum</span><br/>
+<span style="color:#004000;"># object size checking.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.maxObjectSizeLimit</span> = <span style="color:#800000;">0</span><br/>
+<br/>
+<span style="color:#004000;"># Set the maximum allowed pack size.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># A pack exceeding this size will be rejected. The default value, -1, disables</span><br/>
+<span style="color:#004000;"># maximum pack size checking.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">git.maxPackSizeLimit</span> = <span style="color:#800000;">-1</span><br/>
+<br/>
 <span style="color:#004000;"># Use the Gitblit patch receive pack for processing contributions and tickets.</span><br/>
 <span style="color:#004000;"># This allows the user to push a patch using the familiar Gerrit syntax:</span><br/>
 <span style="color:#004000;"># </span><br/>
@@ -652,6 +759,13 @@
 <span style="color:#004000;"># SINCE 1.4.0</span><br/>
 <span style="color:#000080;">tickets.requireApproval</span> = <span style="color:#800000;">false</span><br/>
 <br/>
+<span style="color:#004000;"># The case-insensitive regular expression used to identify and close tickets on</span><br/>
+<span style="color:#004000;"># push to the integration branch for commits that are NOT already referenced as</span><br/>
+<span style="color:#004000;"># a patchset tip.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">tickets.closeOnPushCommitMessageRegex</span> = <span style="color:#800000;">(?:fixes|closes)[\\s-]+#?(\\d+)</span><br/>
+<br/>
 <span style="color:#004000;"># Specify the location of the Lucene Ticket index</span><br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># SINCE 1.4.0</span><br/>
@@ -671,6 +785,18 @@
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># SINCE 1.4.0</span><br/>
 <span style="color:#000080;">tickets.perPage</span> = <span style="color:#800000;">25</span><br/>
+<br/>
+<span style="color:#004000;"># The folder where plugins are loaded from.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#004000;"># RESTART REQUIRED</span><br/>
+<span style="color:#004000;"># BASEFOLDER</span><br/>
+<span style="color:#000080;">plugins.folder</span> = <span style="color:#800000;">${baseFolder}/plugins</span><br/>
+<br/>
+<span style="color:#004000;"># The registry of available plugins.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">plugins.registry</span> = <span style="color:#800000;">http://plugins.gitblit.com/plugins.json</span><br/>
 <br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># Groovy Integration</span><br/>
@@ -1640,9 +1766,9 @@
 <span style="color:#004000;"># The default domain for authentication.</span><br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># If specified, this domain will be used for authentication UNLESS the supplied</span><br/>
-<span style="color:#004000;"># login name manually specifies a domain (.e.g. mydomain\james or <a href="mailto:&#x6a;&#x61;&#109;&#101;s&#x40;&#109;&#x79;d&#x6f;&#109;&#x61;i&#110;">&#x6a;&#x61;&#109;&#101;s&#x40;&#109;&#x79;d&#x6f;&#109;&#x61;i&#110;</a>)</span><br/>
+<span style="color:#004000;"># login name manually specifies a domain (.e.g. mydomain\james or <a href="mailto:j&#x61;&#x6d;es@&#x6d;&#x79;&#x64;&#x6f;&#109;&#97;&#105;&#x6e;">j&#x61;&#x6d;es@&#x6d;&#x79;&#x64;&#x6f;&#109;&#97;&#105;&#x6e;</a>)</span><br/>
 <span style="color:#004000;"># </span><br/>
-<span style="color:#004000;"># If unspecified, the username must be specified in UPN format (<a href="mailto:&#x6e;am&#x65;&#64;dom&#x61;&#x69;&#x6e;&#41;">&#x6e;am&#x65;&#64;dom&#x61;&#x69;&#x6e;&#41;</a>.</span><br/>
+<span style="color:#004000;"># If unspecified, the username must be specified in UPN format (<a href="mailto:&#110;&#97;&#109;&#101;@&#100;&#x6f;&#x6d;a&#x69;&#x6e;&#41;">&#110;&#97;&#109;&#101;@&#100;&#x6f;&#x6d;a&#x69;&#x6e;&#41;</a>.</span><br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># if "." (dot) is specified, ONLY the local account database will be used.</span><br/>
 <span style="color:#004000;"># </span><br/>
@@ -1688,6 +1814,15 @@
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># SINCE 1.0.0</span><br/>
 <span style="color:#000080;">realm.ldap.password</span> = <span style="color:#800000;">password</span><br/>
+<br/>
+<span style="color:#004000;"># Bind pattern for Authentication.</span><br/>
+<span style="color:#004000;"># Allow to directly authenticate an user without LDAP Searches.</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># e.g. CN=${username},OU=Users,OU=UserControl,OU=MyOrganization,DC=MyDomain</span><br/>
+<span style="color:#004000;"># </span><br/>
+<span style="color:#004000;"># SINCE 1.5.0</span><br/>
+<span style="color:#000080;">realm.ldap.bindpattern</span> = <span style="color:#800000;"></span><br/>
+<br/>
 <br/>
 <span style="color:#004000;"># Delegate team membership control to LDAP.</span><br/>
 <span style="color:#004000;"># </span><br/>
@@ -1783,7 +1918,7 @@
 <span style="color:#004000;"># This may be a single attribute, or a string of multiple attributes. Examples:</span><br/>
 <span style="color:#004000;"># email - Uses the attribute 'email' on the user record</span><br/>
 <span style="color:#004000;"># ${givenName}.${surname}@gitblit.com -Will concatenate the 2 attributes</span><br/>
-<span style="color:#004000;"># together with a '.' and '@' creating something like <a href="mailto:&#102;&#x69;&#x72;&#x73;&#x74;&#x2e;&#x6c;a&#x73;&#x74;&#x40;&#103;i&#116;&#x62;&#x6c;&#x69;&#116;&#x2e;&#x63;&#111;&#109;">&#102;&#x69;&#x72;&#x73;&#x74;&#x2e;&#x6c;a&#x73;&#x74;&#x40;&#103;i&#116;&#x62;&#x6c;&#x69;&#116;&#x2e;&#x63;&#111;&#109;</a></span><br/>
+<span style="color:#004000;"># together with a '.' and '@' creating something like <a href="mailto:&#x66;&#105;&#114;s&#116;.l&#x61;&#x73;&#x74;@&#103;&#x69;t&#98;&#x6c;&#105;&#116;&#46;&#99;&#111;m">&#x66;&#105;&#114;s&#116;.l&#x61;&#x73;&#x74;@&#103;&#x69;t&#98;&#x6c;&#105;&#116;&#46;&#99;&#111;m</a></span><br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># SINCE 1.0.0</span><br/>
 <span style="color:#000080;">realm.ldap.email</span> = <span style="color:#800000;">email</span><br/>
@@ -1839,12 +1974,6 @@
 <span style="color:#004000;"># BASEFOLDER</span><br/>
 <span style="color:#000080;">server.tempFolder</span> = <span style="color:#800000;">${baseFolder}/temp</span><br/>
 <br/>
-<span style="color:#004000;"># Use Jetty NIO connectors. If false, Jetty Socket connectors will be used.</span><br/>
-<span style="color:#004000;"># </span><br/>
-<span style="color:#004000;"># SINCE 0.5.0</span><br/>
-<span style="color:#004000;"># RESTART REQUIRED</span><br/>
-<span style="color:#000080;">server.useNio</span> = <span style="color:#800000;">true</span><br/>
-<br/>
 <span style="color:#004000;"># Specify the maximum number of concurrent http/https worker threads to allow.</span><br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># SINCE 1.3.0</span><br/>
@@ -1874,14 +2003,6 @@
 <span style="color:#004000;"># RESTART REQUIRED</span><br/>
 <span style="color:#000080;">server.httpsPort</span> = <span style="color:#800000;">8443</span><br/>
 <br/>
-<span style="color:#004000;"># Port for serving an Apache JServ Protocol (AJP) 1.3 connector for integrating</span><br/>
-<span style="color:#004000;"># Gitblit GO into an Apache HTTP server setup. &lt;= 0 disables this connector.</span><br/>
-<span style="color:#004000;"># Recommended value: 8009</span><br/>
-<span style="color:#004000;"># </span><br/>
-<span style="color:#004000;"># SINCE 0.9.0</span><br/>
-<span style="color:#004000;"># RESTART REQUIRED</span><br/>
-<span style="color:#000080;">server.ajpPort</span> = <span style="color:#800000;">0</span><br/>
-<br/>
 <span style="color:#004000;"># Automatically redirect http requests to the secure https connector.</span><br/>
 <span style="color:#004000;"># </span><br/>
 <span style="color:#004000;"># This setting requires that you have configured server.httpPort and server.httpsPort.</span><br/>
@@ -1909,15 +2030,6 @@
 <span style="color:#004000;"># SINCE 0.5.0</span><br/>
 <span style="color:#004000;"># RESTART REQUIRED</span><br/>
 <span style="color:#000080;">server.httpsBindInterface</span> = <span style="color:#800000;"></span><br/>
-<br/>
-<span style="color:#004000;"># Specify the interface for Jetty to bind the AJP connector.</span><br/>
-<span style="color:#004000;"># You may specify an ip or an empty value to bind to all interfaces.</span><br/>
-<span style="color:#004000;"># Specifying localhost will result in Gitblit ONLY listening to requests to</span><br/>
-<span style="color:#004000;"># localhost.</span><br/>
-<span style="color:#004000;"># </span><br/>
-<span style="color:#004000;"># SINCE 0.9.0</span><br/>
-<span style="color:#004000;"># RESTART REQUIRED</span><br/>
-<span style="color:#000080;">server.ajpBindInterface</span> = <span style="color:#800000;">localhost</span><br/>
 <br/>
 <span style="color:#004000;"># Alias of certificate to use for https/SSL serving. If blank the first</span><br/>
 <span style="color:#004000;"># certificate found in the keystore will be used.</span><br/>
@@ -1967,7 +2079,7 @@
 <span style="color:#000080;">server.shutdownPort</span> = <span style="color:#800000;">8081</span><br/>
 
 <!-- End Markdown -->
-<div ><ul class="pager"> <li class="next"><a href="faq.html">faq &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-18</p>
+<div ><ul class="pager"> <li class="next"><a href="faq.html">faq &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-04-17</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

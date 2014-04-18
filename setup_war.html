@@ -84,10 +84,11 @@
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
-<a tabindex='-1' href='#'>Client Configuration</a>
+<a tabindex='-1' href='#'>Client Usage</a>
 <ul class='dropdown-menu'>
-<li><a href='setup_client.html'>git client setup</a></li>
-<li><a href='eclipse_plugin.html'>eclipse plugin</a></li>
+<li><a href='setup_transport_http.html'>using HTTP/HTTPS</a></li>
+<li><a href='setup_transport_ssh.html'>using SSH</a></li>
+<li><a href='eclipse_plugin.html'>using the Eclipse plugin</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
@@ -98,6 +99,13 @@
 <li><a href='tickets_barnum.html'>barnum</a></li>
 <li><a href='tickets_setup.html'>setup</a></li>
 <li><a href='tickets_replication.html'>replication & advanced administration</a></li>
+</ul></li> <!-- End Submenu -->
+<li class='divider'></li>
+<li class='dropdown-submenu'> <!-- Submenu -->
+<a tabindex='-1' href='#'>Plugins</a>
+<ul class='dropdown-menu'>
+<li><a href='plugins_overview.html'>overview</a></li>
+<li><a href='plugins_extensions.html'>extension points</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li><a href='federation.html'>federation</a></li>
@@ -119,18 +127,20 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
+<li class='divider'></li>
+<li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
 </ul></li> <!-- End Menu -->
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
@@ -139,6 +149,8 @@
 <li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
 <li class='divider'></li>
 <li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li class='divider'></li>
+<li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
 <li><a href='https://github.com/gitblit/gitblit'>Github</a></li>
 <li><a href='http://code.google.com/p/gitblit/issues/list'>Issues</a></li>
@@ -161,7 +173,7 @@
 <!-- Begin Markdown -->
 <h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Gitblit WAR Installation & Setup</h2>
 <ol>
-  <li>Download Gitblit WAR <a href="http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war">1.4.1</a> to the webapps folder of your servlet container.</li>
+  <li>Download Gitblit WAR <a href="http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war">1.5.0</a> to the webapps folder of your servlet container.</li>
   <li>You may have to manually extract the WAR (zip file) to a folder within your webapps folder.</li>
   <li>By default, the Gitblit webapp is configured through <code>WEB-INF/data/gitblit.properties</code>.<br/>Open <code>WEB-INF/data/gitblit.properties</code> in your favorite text editor and make sure to review and set:
   <ul>
@@ -172,9 +184,15 @@
   <li>Open your browser to <a href="http://localhost/gitblit">http://localhost/gitblit</a> or whatever the url should be.</li>
   <li>Enter the default administrator credentials: <strong>admin / admin</strong> and click the <em>Login</em> button<br/><strong>NOTE:</strong> Make sure to change the administrator username and/or password!!</li>
 </ol>
-<h3 class="section" id='H2'><a href="#H2" class="sectionlink"><i class="icon-share-alt"> </i></a>WAR Data Location</h3><p>By default, Gitblit WAR stores all data (users, settings, repositories, etc) in <code>${contextFolder}/WEB-INF/data</code>. This is fine for a quick setup, but there are many reasons why you don't want to keep your data within the webapps folder of your servlet container. You may specify an external location for your data by editing <code>WEB-INF/web.xml</code> and manipulating the <em>baseFolder</em> context parameter. Choose a location that is writeable by your servlet container. Your servlet container may be smart enough to recognize the change and to restart Gitblit.</p><p>On the next restart of Gitblit, Gitblit will copy the contents of the <code>WEB-INF/data</code> folder to your specified <em>baseFolder</em> <strong>IF</strong> the file <code>${baseFolder}/gitblit.properties</code> does not already exist. This allows you to get going with minimal fuss.</p><p>Specifying an alternate <em>baseFolder</em> also allows for simpler upgrades in the future.
+<h3 class="section" id='H2'><a href="#H2" class="sectionlink"><i class="icon-share-alt"> </i></a>WAR Data Location</h3><p>By default, Gitblit WAR stores all data (users, settings, repositories, etc) in <code>${contextFolder}/WEB-INF/data</code>. This is fine for a quick setup, but there are many reasons why you don't want to keep your data within the webapps folder of your servlet container. Specifying an alternate <em>baseFolder</em> also allows for simple upgrades in the future.</p><p>Choose a location that is writeable by your servlet container!</p><p>After you configure baseFolder and restart your container, Gitblit will copy the contents of the <code>WEB-INF/data</code> folder to your specified <em>baseFolder</em> <strong>IF</strong> the file <code>${baseFolder}/gitblit.properties</code> does not already exist. This allows you to get going with minimal fuss.</p>
+<h4 class="section" id='H3'><a href="#H3" class="sectionlink"><i class="icon-share-alt"> </i></a>Specifying baseFolder through web.xml</h4><p>You may specify an external location for your data by directly editing <code>WEB-INF/web.xml</code> and manipulating the <em>baseFolder</em> env-entry. Your servlet container may be smart enough to recognize the change and to restart Gitblit.</p>
+<h4 class="section" id='H4'><a href="#H4" class="sectionlink"><i class="icon-share-alt"> </i></a>Specifying baseFolder through JNDI</h4><p>This is a better way to configure your <em>baseFolder</em> because it survives WAR redeploys or deployments of new versions. These directions assume you are running Tomcat as your container, other containers may have different ways to specify global JNDI environment entries.</p>
+<ol>
+  <li>Open TOMCAT_HOME/conf/context.xml</li>
+  <li>Insert an <em>Environment</em> node within the <em>Context</em> node.<pre>&lt;Environment name="baseFolder" type="java.lang.String" value="c:/projects/git/gitblit/data" override="false" /&gt;</pre></li>
+</ol>
 <!-- End Markdown -->
-<div ><ul class="pager"> <li class="next"><a href="upgrade_war.html">upgrade WAR &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-18</p>
+<div ><ul class="pager"> <li class="next"><a href="upgrade_war.html">upgrade WAR &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-04-17</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

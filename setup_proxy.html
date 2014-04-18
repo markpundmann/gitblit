@@ -84,10 +84,11 @@
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
-<a tabindex='-1' href='#'>Client Configuration</a>
+<a tabindex='-1' href='#'>Client Usage</a>
 <ul class='dropdown-menu'>
-<li><a href='setup_client.html'>git client setup</a></li>
-<li><a href='eclipse_plugin.html'>eclipse plugin</a></li>
+<li><a href='setup_transport_http.html'>using HTTP/HTTPS</a></li>
+<li><a href='setup_transport_ssh.html'>using SSH</a></li>
+<li><a href='eclipse_plugin.html'>using the Eclipse plugin</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
@@ -98,6 +99,13 @@
 <li><a href='tickets_barnum.html'>barnum</a></li>
 <li><a href='tickets_setup.html'>setup</a></li>
 <li><a href='tickets_replication.html'>replication & advanced administration</a></li>
+</ul></li> <!-- End Submenu -->
+<li class='divider'></li>
+<li class='dropdown-submenu'> <!-- Submenu -->
+<a tabindex='-1' href='#'>Plugins</a>
+<ul class='dropdown-menu'>
+<li><a href='plugins_overview.html'>overview</a></li>
+<li><a href='plugins_extensions.html'>extension points</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li><a href='federation.html'>federation</a></li>
@@ -119,18 +127,20 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
+<li class='divider'></li>
+<li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
 </ul></li> <!-- End Menu -->
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
@@ -139,6 +149,8 @@
 <li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
 <li class='divider'></li>
 <li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li class='divider'></li>
+<li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
 <li><a href='https://github.com/gitblit/gitblit'>Github</a></li>
 <li><a href='http://code.google.com/p/gitblit/issues/list'>Issues</a></li>
@@ -159,13 +171,12 @@
 		</div><!-- end Navigation Bar -->
 <div class='container'>
 <!-- Begin Markdown -->
-<h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Running Gitblit behind Apache</h2><p>Gitblit runs fine behind Apache. You may use either <em>mod_proxy</em> (GO or WAR) or <em>mod_proxy_ajp</em> (GO).</p><p>Each Linux distribution may vary on the exact configuration of Apache 2.2.<br/>Here is a sample configuration that works on Debian 7.0 (Wheezy), your distribution may be different.</p>
+<h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Running Gitblit behind Apache</h2><p>Gitblit runs fine behind Apache.</p><p>Each Linux distribution may vary on the exact configuration of Apache 2.2.<br/>Here is a sample configuration that works on Debian 7.0 (Wheezy), your distribution may be different.</p>
 <h3 class="section" id='H2'><a href="#H2" class="sectionlink"><i class="icon-share-alt"> </i></a>Make sure we have Apache's proxy modules</h3><p><pre>sudo su
 cd /etc/apache2/mods-enabled
 ln -s ../mods-available/proxy.load proxy.load
 ln -s ../mods-available/proxy_balancer.load proxy_balancer.load
 ln -s ../mods-available/proxy_http.load proxy_http.load
-ln -s ../mods-available/proxy_ajp.load proxy_ajp.load
 </pre><br/><h3 class="section" id='H3'><a href="#H3" class="sectionlink"><i class="icon-share-alt"> </i></a>Configuring Apache to use the proxy modules</h3></p><p>Now we must configure Apache to use the proxy modules and the proxied connection from Apache to Gitblit GO or from Apache to your chosen servlet container. The following snippet is stored as <code>/etc/apache2/conf.d/gitblit</code>. </p><p><pre># Turn off support for true Proxy behaviour as we are acting as 
 # a transparent proxy
 ProxyRequests Off
@@ -203,12 +214,10 @@ ProxyPreserveHost On
 # context path for your repository url.
 # If you are not using subdomain proxying, then ignore this setting.
 #RequestHeader set X-Forwarded-Context /
-
-#ProxyPass /gitblit ajp://localhost:8009/gitblit
-</pre></p><p><strong>Please</strong> make sure to:<br/> 1. Review the security of these settings as appropriate for your deployment<br/> 2. Uncomment the <em>ProxyPass</em> setting for whichever connection you prefer (http/ajp)<br/> 3. Correctly set the ports and context paths both in the <em>ProxyPass</em> definition and your Gitblit installation<br/> If you are using Gitblit GO you can easily configure the AJP connector by specifying a non-zero AJP port.<br/> Please remember that on Linux/UNIX, ports &lt; 1024 require root permissions to open.<br/> 4. Set <em>web.mountParameters=false</em> in <code>gitblit.properties</code> or <code>web.xml</code> this will use parameterized URLs.<br/> Alternatively, you can respecify <em>web.forwardSlashCharacter</em>.</p>
+</pre></p><p><strong>Please</strong> make sure to:<br/> 1. Review the security of these settings as appropriate for your deployment<br/> 2. Uncomment the <em>ProxyPass</em> setting<br/> 3. Correctly set the ports and context paths both in the <em>ProxyPass</em> definition and your Gitblit installation<br/> 4. Set <em>web.mountParameters=false</em> in <code>gitblit.properties</code> or <code>web.xml</code> this will use parameterized URLs.<br/> Alternatively, you can respecify <em>web.forwardSlashCharacter</em>.</p>
 <h3 class="section" id='H4'><a href="#H4" class="sectionlink"><i class="icon-share-alt"> </i></a>Controlling Advertised Repository URLs</h3><p>In some reverse-proxy configurations you may be running Gitblit using an http interface with an https reverse-proxy proxy. This will lead to Gitblit generating incorrect repository urls.</p><p>You can control the url that Gitblit generates by setting X-Forwarded headers in your proxy server.</p><p><em>X-Forwarded-Proto</em>://servername(:*X-Forwarded-Port*)(/*X-Forwarded-Context*)</p><p><table class="table table-bordered"><tr><th>Header</th><th>Description</th></tr><tr><td>X-Forwarded-Port</td><td>The port to use in generated repository http/https urls</td></tr><tr><td>X-Forwarded-Proto</td><td>The protocol/scheme to use in generated repository http/https urls</td></tr><tr><td>X-Forwarded-Context</td><td>The context to use in generated repository http/https urls</td></tr></table>
 <!-- End Markdown -->
-<div ><ul class="pager"><li class="previous"><a href="setup_lucene.html">&larr; lucene indexing</a></li> <li class="next"><a href="setup_clientmenus.html">client app menus &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-03-18</p>
+<div ><ul class="pager"><li class="previous"><a href="setup_lucene.html">&larr; lucene indexing</a></li> <li class="next"><a href="setup_clientmenus.html">client app menus &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-04-17</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

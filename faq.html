@@ -84,10 +84,11 @@
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
-<a tabindex='-1' href='#'>Client Configuration</a>
+<a tabindex='-1' href='#'>Client Usage</a>
 <ul class='dropdown-menu'>
-<li><a href='setup_client.html'>git client setup</a></li>
-<li><a href='eclipse_plugin.html'>eclipse plugin</a></li>
+<li><a href='setup_transport_http.html'>using HTTP/HTTPS</a></li>
+<li><a href='setup_transport_ssh.html'>using SSH</a></li>
+<li><a href='eclipse_plugin.html'>using the Eclipse plugin</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li class='dropdown-submenu'> <!-- Submenu -->
@@ -98,6 +99,13 @@
 <li><a href='tickets_barnum.html'>barnum</a></li>
 <li><a href='tickets_setup.html'>setup</a></li>
 <li><a href='tickets_replication.html'>replication & advanced administration</a></li>
+</ul></li> <!-- End Submenu -->
+<li class='divider'></li>
+<li class='dropdown-submenu'> <!-- Submenu -->
+<a tabindex='-1' href='#'>Plugins</a>
+<ul class='dropdown-menu'>
+<li><a href='plugins_overview.html'>overview</a></li>
+<li><a href='plugins_extensions.html'>extension points</a></li>
 </ul></li> <!-- End Submenu -->
 <li class='divider'></li>
 <li><a href='federation.html'>federation</a></li>
@@ -119,18 +127,20 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.4.1.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.4.1.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.4.1.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.4.1.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.4.1.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
 <li class='divider'></li>
 <li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
+<li class='divider'></li>
+<li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
 </ul></li> <!-- End Menu -->
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
@@ -139,6 +149,8 @@
 <li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
 <li class='divider'></li>
 <li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li class='divider'></li>
+<li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
 <li><a href='https://github.com/gitblit/gitblit'>Github</a></li>
 <li><a href='http://code.google.com/p/gitblit/issues/list'>Issues</a></li>
@@ -216,17 +228,16 @@ Value = <em>false</em></pre></li>
 <h3 class="section" id='H18'><a href="#H18" class="sectionlink"><i class="icon-share-alt"> </i></a>Do I need a JDK or can I use a JRE?</h3><p>Gitblit will run just fine with a JRE.</p>
 <h3 class="section" id='H19'><a href="#H19" class="sectionlink"><i class="icon-share-alt"> </i></a>Does Gitblit use a database to store its data?</h3><p>No. Gitblit stores its repository configuration information within the <code>.git/config</code> file and its user information in <code>users.conf</code> or whatever filename is configured in <code>gitblit.properties</code>.</p>
 <h3 class="section" id='H20'><a href="#H20" class="sectionlink"><i class="icon-share-alt"> </i></a>Can I manually edit users.conf, gitblit.properties, or .git/config?</h3><p>Yes. You can manually manipulate all of them and (most) changes will be immediately available to Gitblit.<br/>Exceptions to this are noted in <code>gitblit.properties</code>.</p><p><strong>NOTE:</strong><br/>Care must be taken to preserve the relationship between user roles and repository names.<br/>Please see the <em>User Roles</em> section of the <a href="/setup.html">setup</a> page for details.</p>
-<h3 class="section" id='H21'><a href="#H21" class="sectionlink"><i class="icon-share-alt"> </i></a>Can I restrict access to branches or paths within a repository?</h3><p>No, not out-of-the-box. Access restrictions apply to the repository as a whole.</p><p>Gitblit's simple authentication and authorization mechanism can be used to facilitate one or more of the <a href="http://progit.org/book/ch5-1.html">workflows outlined here</a>.</p><p>Should you require more fine-grained access controls you might consider writing a Groovy <em>prereceive</em> script to block updating branch refs based on some permissions file. I would be interested in a generic, re-usable script to include with Gitblit, should someone want to implement it.</p><p>Alternatively, you could use <a href="https://github.com/sitaramc/gitolite">gitolite</a> and SSH for your repository access.</p>
+<h3 class="section" id='H21'><a href="#H21" class="sectionlink"><i class="icon-share-alt"> </i></a>Can I restrict access to branches or paths within a repository?</h3><p>No, not yet. Access restrictions apply to the repository as a whole.</p><p>Gitblit's simple authentication and authorization mechanism can be used to facilitate one or more of the <a href="http://progit.org/book/ch5-1.html">workflows outlined here</a>.</p><p>Should you require more fine-grained access controls you might consider writing a Groovy <em>prereceive</em> script to block updating branch refs based on some permissions file. I would be interested in a generic, re-usable script to include with Gitblit, should someone want to implement it.</p><p>Alternatively, you could use <a href="https://github.com/sitaramc/gitolite">gitolite</a> and SSH for your repository access.</p>
 <h3 class="section" id='H22'><a href="#H22" class="sectionlink"><i class="icon-share-alt"> </i></a>Can I authenticate users against XYZ?</h3><p>Yes. The user service is pluggable. You may write your own complete user service by implementing the <em>com.gitblit.IUserService</em> interface. Or you may subclass <em>com.gitblit.GitblitUserService</em> and override just the authentication. Set the fully qualified classname as the <em>realm.userService</em> property.</p>
-<h3 class="section" id='H23'><a href="#H23" class="sectionlink"><i class="icon-share-alt"> </i></a>Why doesn't Gitblit support SSH?</h3><p>It will. This feature is in development and should land in the 1.5.0 release.</p>
-<h3 class="section" id='H24'><a href="#H24" class="sectionlink"><i class="icon-share-alt"> </i></a>What types of Search does Gitblit support?</h3><p>As of 0.9.0, Gitblit supports Lucene-based searching.</p><p>If Lucene indexing is disabled, Gitblit falls back to brute-force commit-traversal search. Commit-traversal search supports case-insensitive searching of <em>commit message</em> (default), <em>author</em>, and <em>committer</em>.</p><p>To search by <em>author</em> or <em>committer</em> use the following syntax in the search box:</p>
+<h3 class="section" id='H23'><a href="#H23" class="sectionlink"><i class="icon-share-alt"> </i></a>What types of Search does Gitblit support?</h3><p>As of 0.9.0, Gitblit supports Lucene-based searching.</p><p>If Lucene indexing is disabled, Gitblit falls back to brute-force commit-traversal search. Commit-traversal search supports case-insensitive searching of <em>commit message</em> (default), <em>author</em>, and <em>committer</em>.</p><p>To search by <em>author</em> or <em>committer</em> use the following syntax in the search box:</p>
 <pre><code>author: james
 committer: james
 </code></pre><p>Alternatively, you could enable the search type dropdown list in your <code>gitblit.properties</code> file.</p>
-<h3 class="section" id='H25'><a href="#H25" class="sectionlink"><i class="icon-share-alt"> </i></a>Why did you call the setting federation.N.frequency instead of federation.N.period?!</h3><p>Yes, yes I know that you are really specifying the period, but Frequency sounds better to me. :)</p>
-<h3 class="section" id='H26'><a href="#H26" class="sectionlink"><i class="icon-share-alt"> </i></a>Can Gitblit be translated?</h3><p>Yes. Most messages are localized to a standard Java properties file.
+<h3 class="section" id='H24'><a href="#H24" class="sectionlink"><i class="icon-share-alt"> </i></a>Why did you call the setting federation.N.frequency instead of federation.N.period?!</h3><p>Yes, yes I know that you are really specifying the period, but Frequency sounds better to me. :)</p>
+<h3 class="section" id='H25'><a href="#H25" class="sectionlink"><i class="icon-share-alt"> </i></a>Can Gitblit be translated?</h3><p>Yes. Most messages are localized to a standard Java properties file.
 <!-- End Markdown -->
-<div ><ul class="pager"><li class="previous"><a href="properties.html">&larr; settings</a></li> </ul></div><footer class="footer"><p class="pull-right">generated 2014-03-18</p>
+<div ><ul class="pager"><li class="previous"><a href="properties.html">&larr; settings</a></li> </ul></div><footer class="footer"><p class="pull-right">generated 2014-04-17</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

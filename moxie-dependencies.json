@@ -1,6 +1,6 @@
 {
     "ring" : "0",
-    "name" : "gitblit 1.4.1",
+    "name" : "gitblit 1.5.0",
     "children" : [
     {
         "ring" : "1",
@@ -35,22 +35,17 @@
 ,
     {
         "ring" : "1",
-        "name" : "jcommander 1.17"
-    }
-,
-    {
-        "ring" : "1",
         "name" : "log4j 1.2.17"
     }
 ,
     {
         "ring" : "1",
-        "name" : "slf4j-api 1.6.6"
+        "name" : "slf4j-api 1.7.5"
     }
 ,
     {
         "ring" : "1",
-        "name" : "slf4j-log4j12 1.6.6"
+        "name" : "slf4j-log4j12 1.7.5"
     }
 ,
     {
@@ -60,17 +55,12 @@
 ,
     {
         "ring" : "1",
-        "name" : "javax.servlet-api 3.0.1"
+        "name" : "javax.servlet-api 3.1.0"
     }
 ,
     {
         "ring" : "1",
-        "name" : "jetty-webapp 8.1.13.v20130916"
-    }
-,
-    {
-        "ring" : "1",
-        "name" : "jetty-ajp 8.1.13.v20130916"
+        "name" : "jetty-all 9.1.4.v20140401"
     }
 ,
     {
@@ -86,11 +76,6 @@
     {
         "ring" : "1",
         "name" : "wicket-extensions 1.4.21"
-    }
-,
-    {
-        "ring" : "1",
-        "name" : "googlecharts 1.4.21"
     }
 ,
     {
@@ -215,11 +200,11 @@
 ,
     {
         "ring" : "1",
-        "name" : "org.eclipse.jgit 3.3.0.201403021825-r",
+        "name" : "org.eclipse.jgit 3.3.1.201403241930-r",
         "children" : [
         {
             "ring" : "2",
-            "name" : "jsch 0.1.46"
+            "name" : "jsch 0.1.50"
         }
     ,
         {
@@ -256,7 +241,7 @@
 ,
     {
         "ring" : "1",
-        "name" : "org.eclipse.jgit.http.server 3.3.0.201403021825-r"
+        "name" : "org.eclipse.jgit.http.server 3.3.1.201403241930-r"
     }
 ,
     {
@@ -272,6 +257,16 @@
     {
         "ring" : "1",
         "name" : "bcpkix-jdk15on 1.49"
+    }
+,
+    {
+        "ring" : "1",
+        "name" : "sshd-core 0.10.1"
+    }
+,
+    {
+        "ring" : "1",
+        "name" : "mina-core 2.0.7"
     }
 ,
     {
@@ -386,6 +381,11 @@
 ,
     {
         "ring" : "1",
+        "name" : "args4j 2.0.26"
+    }
+,
+    {
+        "ring" : "1",
         "name" : "jedis 2.3.1",
         "children" : [
         {
@@ -395,6 +395,11 @@
     
         ]
     
+    }
+,
+    {
+        "ring" : "1",
+        "name" : "pf4j 0.8.0"
     }
 ,
     {
