@@ -127,17 +127,17 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/express-1.5.1.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/manager-1.5.1.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/fedclient-1.5.1.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gbapi-1.5.1.zip'>API Library</a></li>
 <li class='divider'></li>
-<li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
+<li><a href='https://bintray.com/gitblit/releases/gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
 <li class='divider'></li>
 <li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
@@ -145,10 +145,7 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='https://demo-gitblit.rhcloud.com'>Gitblit Demo (RELEASE)</a></li>
-<li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
-<li class='divider'></li>
-<li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li><a href='https://dev.gitblit.com'>dev.gitblit.com (self-hosted)</a></li>
 <li class='divider'></li>
 <li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
@@ -173,121 +170,50 @@
 <!-- Begin Markdown -->
 
 <!-- CURRENT RELEASE -->
-	<h3 id="1.5.0" class="section"><a href="#1.5.0" class="sectionlink"><i class="icon-share-alt"> </i></a>Current Release (1.5.0) <small>this is the current stable release</small></h3>
+	<h3 id="1.5.1" class="section"><a href="#1.5.1" class="sectionlink"><i class="icon-share-alt"> </i></a>Current Release (1.5.1) <small>this is the current stable release</small></h3>
 	<table class="table">
 		<tbody>
 			<tr>
-				<td style="background-color:inherit;width:100px">2014-04-17</td>
+				<td style="background-color:inherit;width:100px">2014-05-07</td>
 				<td style="background-color:inherit;">	
 	
-		<blockquote><p>MAJOR Release.<br /><br />* Integrated SSH daemon based on Apache Mina/SSHD and Gerrit<br />* Basic plugin management framework and plugin registry, limited extension points<br />* Replace GoogleCharts with a self-hosted copy of the flotr2 charting library<br />* Move to Java 7, some dependencies require this<br />* Move to Jetty 9, dropped AJP feature because it was removed upstream<br /></p></blockquote>		
 
-		<div class="alert alert-info">
-			<h4>Note</h4>
-			Gitblit now requires Java 7 for build &amp; runtime.
-		</div>
 
    	<h4>fixes</h4>
 	<ul>
-		<li>Repository mailing lists could not be reset from the Edit Repository page (<a href='http://code.google.com/p/gitblit/issues/detail?id=399'>issue 399</a>)</li>
-		<li>Fix intermittent NPE in determining commit date in RefModel (<a href='http://code.google.com/p/gitblit/issues/detail?id=401'>issue 401</a>)</li>
-		<li>Fix closing ticket on push by parsing commit messages for closes|fixes (<a href='http://code.google.com/p/gitblit/issues/detail?id=404'>issue 404</a>)</li>
-		<li>Fix diffstat display for a ticket with a pending submodule change (<a href='http://code.google.com/p/gitblit/issues/detail?id=407'>issue 407</a>)</li>
-		<li>Ensure the Lucene ticket index is updated on repository deletion.</li>
-		<li>Fixed failure to properly determine hasTicket in RedisTicketService</li>
-		<li>Fixed handling of pushing ticket branch deletions</li>
+		<li>Fix subdirectory links in pages servlet (<a href='http://code.google.com/p/gitblit/issues/detail?id=411'>issue 411</a>)</li>
+		<li>Fix subdirectory navigation in pages servlet (<a href='http://code.google.com/p/gitblit/issues/detail?id=412'>issue 412</a>)</li>
+		<li>Fix bug in adding invalid or empty SSH keys (<a href='https://dev.gitblit.com/tickets/gitblit.git/50'>ticket 50</a>)</li>
+		<li>Fix forcing default locale to en or LANG_CC for web ui (<a href='https://dev.gitblit.com/tickets/gitblit.git/51'>ticket 51</a>)</li>
+		<li>Fix inconsistency with repository ownership permission checking (<a href='https://dev.gitblit.com/tickets/gitblit.git/52'>ticket 52</a>)</li>
+		<li>Prevent submission from New|Edit ticket page with empty titles (<a href='https://dev.gitblit.com/tickets/gitblit.git/53'>ticket 53</a>)</li>
+		<li>Ensure the repository model ref list is refreshed on ref creation or deletion (<a href='https://dev.gitblit.com/tickets/gitblit.git/54'>ticket 54</a>)</li>
+		<li>Fix case-sensitivity error in determining fork network (<a href='http://code.google.com/p/gitblit/issues/detail?id=420'>issue 420</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/62'>ticket 62</a>)</li>
+		<li>Fix transport determination for SSH urls served on port 22 (<a href='http://code.google.com/p/gitblit/issues/detail?id=421'>issue 421</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/63'>ticket 63</a>)</li>
 	</ul>
    	<h4>changes</h4>
 	<ul>
-		<li>Switch from GoogleCharts to self-hosted flotr2 charts (<a href='http://code.google.com/p/gitblit/issues/detail?id=283'>issue 283</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/43'>ticket 43</a>, <a href='https://github.com/gitblit/gitblit/pull/166'>pull request #166</a>)</li>
-		<li>Specify the --dailyLogFile option for the Ubuntu and CentOS service scripts (<a href='http://code.google.com/p/gitblit/issues/detail?id=348'>issue 348</a>)</li>
-		<li>Improve logging for missing LDAP uid attribute when synchronizing (<a href='http://code.google.com/p/gitblit/issues/detail?id=394'>issue 394</a>)</li>
-		<li>The ticket close-on-push commit message regular expression is now configurable by a setting (<a href='http://code.google.com/p/gitblit/issues/detail?id=404'>issue 404</a>)</li>
-		<li>Redirect to summary page on edit repository (<a href='http://code.google.com/p/gitblit/issues/detail?id=405'>issue 405</a>)</li>
-		<li>Option to allow LDAP users to directly authenticate without performing LDAP searches (<a href='https://github.com/gitblit/gitblit/pull/162'>pull request #162</a>)</li>
-		<li>Replace JCommander with args4j to be consistent with other tools (<a href='https://dev.gitblit.com/tickets/gitblit.git/28'>ticket 28</a>)</li>
-		<li>Sort repository urls by descending permissions and by transport security within equal permissions</li>
-		<li>Move to Java 7 &amp; updated to Jetty 9.1.4</li>
-		<li>dropped AJP support because it has been removed from upstream Jetty</li>
-		<li>dropped settings: server.useNio, server.ajpPort, server.ajpBindInterface</li>
-		<li>dropped GO parameters: --ajpPort, --useNio</li>
+		<li>improve French translation (<a href='https://github.com/gitblit/gitblit/pull/176'>pull request #176</a>)</li>
+		<li>simplify current plugin release detection and ignore the currentRelease registry field</li>
 	</ul>
    	<h4>additions</h4>
 	<ul>
-		<li>Added an SSH daemon with public key authentication (<a href='http://code.google.com/p/gitblit/issues/detail?id=369'>issue 369</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/6'>ticket 6</a>)</li>
-		<li>Added beginnings of a plugin framework for extending Gitblit (<a href='http://code.google.com/p/gitblit/issues/detail?id=381'>issue 381</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/23'>ticket 23</a>)</li>
-		<li>Added a French translation (<a href='https://github.com/gitblit/gitblit/pull/163'>pull request #163</a>)</li>
-		<li>Added a setting to control what transports may be used for pushes</li>
-		<li>Expose JGit 3.x receive pack settings (<a href='http://code.google.com/p/gitblit/issues/detail?id=408'>issue 408</a>)</li>
+		<li>added TortoiseGit client app menu (<a href='https://github.com/gitblit/gitblit/pull/182'>pull request #182</a>)</li>
 	</ul>
-   	<h4>new settings</h4>
-	<table class="table">
-		<tr>
-			<td><em>realm.ldap.bindpattern</em></td><td></td>
-		</tr>
-		<tr>
-			<td><em>tickets.closeOnPushCommitMessageRegex</em></td><td>(?:fixes|closes)[\\s-]+#?(\\d+)</td>
-		</tr>
-		<tr>
-			<td><em>git.acceptedPushTransports</em></td><td></td>
-		</tr>
-		<tr>
-			<td><em>git.checkReceivedObjects</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>git.checkReferencedObjectsAreReachable</em></td><td>true</td>
-		</tr>
-		<tr>
-			<td><em>git.maxObjectSizeLimit</em></td><td>0</td>
-		</tr>
-		<tr>
-			<td><em>git.maxPackSizeLimit</em></td><td>-1</td>
-		</tr>
-		<tr>
-			<td><em>git.sshPort</em></td><td>29418</td>
-		</tr>
-		<tr>
-			<td><em>git.sshBindInterface</em></td><td></td>
-		</tr>
-		<tr>
-			<td><em>git.sshKeysManager</em></td><td>com.gitblit.transport.ssh.FileKeyManager</td>
-		</tr>
-		<tr>
-			<td><em>git.sshKeysFolder</em></td><td>${baseFolder}/ssh</td>
-		</tr>
-		<tr>
-			<td><em>git.sshBackend</em></td><td>NIO2</td>
-		</tr>
-		<tr>
-			<td><em>git.sshCommandStartThreads</em></td><td>2</td>
-		</tr>
-		<tr>
-			<td><em>plugins.folder</em></td><td>${baseFolder}/plugins</td>
-		</tr>
-		<tr>
-			<td><em>plugins.registry</em></td><td>http://plugins.gitblit.com/plugins.json</td>
-		</tr>
-	</table>
    	<h4>dependency changes</h4>
 	<ul>
-		<li>Java 7</li>
-		<li>Jetty 9.1.4</li>
-		<li>args4j 2.0.26</li>
-		<li>JGit 3.3.1</li>
-		<li>Mina SSHD 0.10.1</li>
-		<li>pf4j 0.8.0</li>
-		<li>SLF4J 1.7.5</li>
+		<li>update to Apache MINA/SSHD 0.11.0 (<a href='http://code.google.com/p/gitblit/issues/detail?id=410'>issue 410</a>)</li>
 	</ul>
    	<h4>contributors</h4>
 	<ul>
-		<li>David Ostrovsky</li>
-		<li>Decebal Suiu</li>
-		<li>Eric Myrhe</li>
+		<li>Alexander Zabluda</li>
+		<li>Jakob Boysen</li>
 		<li>James Moger</li>
-		<li>Jeremie Brebec</li>
-		<li>Johann Ollivier-Lapeyre</li>
-		<li>Kevin Walter</li>
-		<li>Tim Ryan</li>
+		<li>Julien Kirch</li>
+		<li>Olivier Rouits</li>
+		<li>Owen Nelson</li>
+		<li>Philipp Beckmann</li>
+		<li>Ralph Hoffman</li>
 	</ul>
 </td>
 			</tr>
@@ -303,7 +229,7 @@
 </div>
 
 <!-- End Markdown -->
-<footer class="footer"><p class="pull-right">generated 2014-04-17</p>
+<footer class="footer"><p class="pull-right">generated 2014-05-07</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

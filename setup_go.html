@@ -127,17 +127,17 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/express-1.5.1.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/manager-1.5.1.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/fedclient-1.5.1.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gbapi-1.5.1.zip'>API Library</a></li>
 <li class='divider'></li>
-<li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
+<li><a href='https://bintray.com/gitblit/releases/gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
 <li class='divider'></li>
 <li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
@@ -145,10 +145,7 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='https://demo-gitblit.rhcloud.com'>Gitblit Demo (RELEASE)</a></li>
-<li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
-<li class='divider'></li>
-<li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li><a href='https://dev.gitblit.com'>dev.gitblit.com (self-hosted)</a></li>
 <li class='divider'></li>
 <li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
@@ -173,11 +170,11 @@
 <!-- Begin Markdown -->
 <h2 class="section" id='H1'><a href="#H1" class="sectionlink"><i class="icon-share-alt"> </i></a>Gitblit GO Installation & Setup</h2>
 <ol>
-  <li>Download and unzip Gitblit GO <a href="http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip">1.5.0 (Windows)</a> or <a href="http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz">1.5.0 (Linux/OSX)</a>.<br/><em>Its best to eliminate spaces in the path name.</em></li>
+  <li>Download and unzip Gitblit GO <a href="http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.zip">1.5.1 (Windows)</a> or <a href="http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.tar.gz">1.5.1 (Linux/OSX)</a>.<br/><em>Its best to eliminate spaces in the path name.</em></li>
   <li>The server itself is configured through a simple text file.<br/>Open <code>data/gitblit.properties</code> in your favorite text editor and make sure to review and set:
   <ul>
     <li><em>server.httpPort</em> and <em>server.httpsPort</em></li>
-    <li><em>server.storePassword</em><br/><strong>https</strong> is strongly recommended because passwords are insecurely transmitted form your browser/git client using Basic authentication!</li>
+    <li><em>server.storePassword</em> (do not enter <em>#</em> characters)<br/><strong>https</strong> is strongly recommended because passwords are insecurely transmitted form your browser/git client using Basic authentication!</li>
     <li><em>git.packedGitLimit</em> (set larger than the size of your largest repository)</li>
     <li><em>git.streamFileThreshold</em> (set larger than the size of your largest committed file)</li>
   </ul></li>
@@ -196,7 +193,7 @@
 <h3 class="section" id='H3'><a href="#H3" class="sectionlink"><i class="icon-share-alt"> </i></a>Creating your own Self-Signed SSL Certificate</h3><p>Gitblit GO (and Gitblit Certificate Authority) automatically generates a Certificate Authority (CA) certificate and an ssl certificate signed by this CA certificate that is bound to <em>localhost</em>.</p><p>Remote Eclipse/EGit/JGit clients (&lt; 3.0) will fail to communicate using this certificate because JGit always verifies the hostname of the certificate, regardless of the <em>http.sslVerify=false</em> client-side setting.</p><p>The EGit failure message is something like:</p>
 <pre><code>Cannot get remote repository refs.
 Reason: https:/myserver.com/git/myrepo.git: cannot open git-upload-pack
-</code></pre><p>If you want to serve your repositories to another machine over https then you will want to generate a new certificate for the hostname or ip address you are serving from.</p>
+</code></pre><p>If you want to serve your repositories to another machine over https then you will want to generate a new certificate for the hostname or ip address you are serving from.</p><p><strong>NOTE:</strong> The Gitblit Authority is a GUI tool and will require X11 forwarding on headless UNIX boxes.</p>
 <ol>
   <li><code>authority.cmd</code> or <code>java -jar authority.jar --baseFolder data</code></li>
   <li>Click the <em>new ssl certificate</em> button (red rosette in the toolbar in upper left of window)</li>
@@ -260,7 +257,7 @@ Reason: https:/myserver.com/git/myrepo.git: cannot open git-upload-pack
 <pre><code>java -Dlog4j.configuration=file:///home/james/log4j.properties -jar gitblit.jar &lt;optional_gitblit_args&gt;
 </code></pre><p>You can not use override the default log4j configuration <em>AND</em> specify the <code>--dailyLogFile</code> parameter. For reference, here is <a href="https://github.com/gitblit/gitblit/blob/master/src/log4j.properties">Gitblit's default Log4j configuration</a>. It includes some file appenders that are disabled by default. 
 <!-- End Markdown -->
-<div ><ul class="pager"> <li class="next"><a href="upgrade_go.html">upgrade GO &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-04-17</p>
+<div ><ul class="pager"> <li class="next"><a href="upgrade_go.html">upgrade GO &rarr;</a></li></ul></div><footer class="footer"><p class="pull-right">generated 2014-05-07</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

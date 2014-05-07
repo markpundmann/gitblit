@@ -127,17 +127,17 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>downloads<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.zip'>Gitblit GO (Windows)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gitblit-1.5.0.war'>Gitblit WAR</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/express-1.5.0.zip'>Gitblit Express</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.zip'>Gitblit GO (Windows)</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.tar.gz'>Gitblit GO (Linux/OSX)</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gitblit-1.5.1.war'>Gitblit WAR</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/express-1.5.1.zip'>Gitblit Express</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/manager-1.5.0.zip'>Gitblit Manager</a></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/fedclient-1.5.0.zip'>Federation Client</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/manager-1.5.1.zip'>Gitblit Manager</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/fedclient-1.5.1.zip'>Federation Client</a></li>
 <li class='divider'></li>
-<li><a href='http://dl.bintray.com/jamesmoger/generic/gbapi-1.5.0.zip'>API Library</a></li>
+<li><a href='http://dl.bintray.com/gitblit/releases/gbapi-1.5.1.zip'>API Library</a></li>
 <li class='divider'></li>
-<li><a href='https://bintray.com/jamesmoger/generic/Gitblit'>Bintray (1.4.0+)</a></li>
+<li><a href='https://bintray.com/gitblit/releases/gitblit'>Bintray (1.4.0+)</a></li>
 <li><a href='https://code.google.com/p/gitblit/downloads/list?can=1'>GoogleCode (pre-1.4.0)</a></li>
 <li class='divider'></li>
 <li><a href='http://gitblit.github.io/gitblit-maven'>Maven Repository</a></li>
@@ -145,10 +145,7 @@
 <li class='dropdown'> <!-- Menu -->
 <a class='dropdown-toggle' href='#' data-toggle='dropdown'>links<b class='caret'></b></a>
 <ul class='dropdown-menu'>
-<li><a href='https://demo-gitblit.rhcloud.com'>Gitblit Demo (RELEASE)</a></li>
-<li><a href='https://next-gitblit.rhcloud.com'>Gitblit Next (SNAPSHOT)</a></li>
-<li class='divider'></li>
-<li><a href='https://dev.gitblit.com'>Gitblit (Self-Hosted)</a></li>
+<li><a href='https://dev.gitblit.com'>dev.gitblit.com (self-hosted)</a></li>
 <li class='divider'></li>
 <li><a href='http://plugins.gitblit.com'>Plugin Registry</a></li>
 <li class='divider'></li>
@@ -178,6 +175,54 @@
 	<table class="table">
 		<tbody>
 		<!-- RELEASE HISTORY -->
+		<tr id="1.5.1">
+			<td style="width:100px" id="1.5.1">
+				<b><a href="#1.5.1">1.5.1</a></b><br/>
+				2014-05-07
+			</td>
+			<td>		<p class="lead">Gitblit 1.5.1 released</p>		
+	
+	
+
+
+   	<h4>fixes</h4>
+	<ul>
+		<li>Fix subdirectory links in pages servlet (<a href='http://code.google.com/p/gitblit/issues/detail?id=411'>issue 411</a>)</li>
+		<li>Fix subdirectory navigation in pages servlet (<a href='http://code.google.com/p/gitblit/issues/detail?id=412'>issue 412</a>)</li>
+		<li>Fix bug in adding invalid or empty SSH keys (<a href='https://dev.gitblit.com/tickets/gitblit.git/50'>ticket 50</a>)</li>
+		<li>Fix forcing default locale to en or LANG_CC for web ui (<a href='https://dev.gitblit.com/tickets/gitblit.git/51'>ticket 51</a>)</li>
+		<li>Fix inconsistency with repository ownership permission checking (<a href='https://dev.gitblit.com/tickets/gitblit.git/52'>ticket 52</a>)</li>
+		<li>Prevent submission from New|Edit ticket page with empty titles (<a href='https://dev.gitblit.com/tickets/gitblit.git/53'>ticket 53</a>)</li>
+		<li>Ensure the repository model ref list is refreshed on ref creation or deletion (<a href='https://dev.gitblit.com/tickets/gitblit.git/54'>ticket 54</a>)</li>
+		<li>Fix case-sensitivity error in determining fork network (<a href='http://code.google.com/p/gitblit/issues/detail?id=420'>issue 420</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/62'>ticket 62</a>)</li>
+		<li>Fix transport determination for SSH urls served on port 22 (<a href='http://code.google.com/p/gitblit/issues/detail?id=421'>issue 421</a>, <a href='https://dev.gitblit.com/tickets/gitblit.git/63'>ticket 63</a>)</li>
+	</ul>
+   	<h4>changes</h4>
+	<ul>
+		<li>improve French translation (<a href='https://github.com/gitblit/gitblit/pull/176'>pull request #176</a>)</li>
+		<li>simplify current plugin release detection and ignore the currentRelease registry field</li>
+	</ul>
+   	<h4>additions</h4>
+	<ul>
+		<li>added TortoiseGit client app menu (<a href='https://github.com/gitblit/gitblit/pull/182'>pull request #182</a>)</li>
+	</ul>
+   	<h4>dependency changes</h4>
+	<ul>
+		<li>update to Apache MINA/SSHD 0.11.0 (<a href='http://code.google.com/p/gitblit/issues/detail?id=410'>issue 410</a>)</li>
+	</ul>
+   	<h4>contributors</h4>
+	<ul>
+		<li>Alexander Zabluda</li>
+		<li>Jakob Boysen</li>
+		<li>James Moger</li>
+		<li>Julien Kirch</li>
+		<li>Olivier Rouits</li>
+		<li>Owen Nelson</li>
+		<li>Philipp Beckmann</li>
+		<li>Ralph Hoffman</li>
+	</ul>
+</td>
+		</tr>
 		<tr id="1.5.0">
 			<td style="width:100px" id="1.5.0">
 				<b><a href="#1.5.0">1.5.0</a></b><br/>
@@ -1834,7 +1879,7 @@ You will need to move a few files around when upgrading.  Please review the <a h
 	</table>
 
 <!-- End Markdown -->
-<footer class="footer"><p class="pull-right">generated 2014-04-17</p>
+<footer class="footer"><p class="pull-right">generated 2014-05-07</p>
 <p>The content of this page is licensed under the <a href="http://creativecommons.org/licenses/by/3.0">Creative Commons Attribution 3.0 License</a>.</p>
 </footer>
 </div>

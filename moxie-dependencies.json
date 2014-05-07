@@ -1,6 +1,6 @@
 {
     "ring" : "0",
-    "name" : "gitblit 1.5.0",
+    "name" : "gitblit 1.5.1",
     "children" : [
     {
         "ring" : "1",
@@ -261,7 +261,7 @@
 ,
     {
         "ring" : "1",
-        "name" : "sshd-core 0.10.1"
+        "name" : "sshd-core 0.11.0"
     }
 ,
     {
